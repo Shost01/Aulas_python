@@ -7,6 +7,7 @@
 # Cada colchete fechado possui um colchete aberto correspondente do mesmo tipo.
 
 def isValid(s):
+    '''
     # Dicionário para mapear colchetes de fechamento aos de abertura
     mapa_colchetes = {')': '(', '}': '{', ']': '['}
     # Pilha para armazenar colchetes de abertura
@@ -26,5 +27,36 @@ def isValid(s):
     
     # No final, se a pilha estiver vazia, a string é válida
     return not pilha
-
-print (isValid('[]'))
+    '''
+    lista = ['(', ')', '{', '}', '[', ']']   
+    parenteses_abertos = 0
+    colchetes_abertos = 0
+    chaves_abertos = 0
+    
+    
+    for char in s:
+        if char == '(':
+            parenteses_abertos += 1
+        elif char == ')':
+            parenteses_abertos -= 1
+            if parenteses_abertos < 0:
+                return False
+        elif char == '{':
+            colchetes_abertos += 1
+        elif char == '}':
+            colchetes_abertos -= 1
+            if colchetes_abertos < 0:
+                return False
+        elif char == '[':
+            chaves_abertos += 1
+        elif char == ']':
+            chaves_abertos -= 1
+            if chaves_abertos < 0:
+                return False
+        
+    if parenteses_abertos == 0 and colchetes_abertos == 0 and chaves_abertos == 0:
+        return True
+    else:
+        return False      
+    
+print (isValid('[)'))
